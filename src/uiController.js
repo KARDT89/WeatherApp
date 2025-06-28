@@ -16,13 +16,13 @@ function showWeather(weatherData, iconData) {
   const h1 = document.createElement("h1");
   const h2 = document.createElement("h2");
   const content = document.getElementById("content");
-  const vibe = document.getElementById("vibe");
+  const body = document.getElementsByTagName("body");
   const img = document.createElement("img");
   const card = document.createElement("div");
   const weatherIcon = document.createElement("img");
 
   content.innerHTML = "";
-  vibe.innerHTML = ""
+
 
   h1.classList.add('current-temperature')
   h2.classList.add('weather-description')
@@ -34,6 +34,7 @@ function showWeather(weatherData, iconData) {
   h1.innerHTML = `${currentTemperature}`;
   h2.innerHTML = `${description}`;
   img.src = imgURL;
+//   body.style.backgroundImage = `url(${imgURL})`
   weatherIcon.src = `/icons/${iconName}.svg`;
 
 
@@ -42,5 +43,5 @@ function showWeather(weatherData, iconData) {
   card.appendChild(h2);
 
   content.appendChild(card)
-  vibe.appendChild(img);
+  content.appendChild(img);
 }
