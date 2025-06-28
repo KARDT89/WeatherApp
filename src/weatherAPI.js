@@ -8,21 +8,27 @@ export async function weatherSearch(location) {
       throw new Error(`Response status: ${response.status}`);
     }
 
-    let data = {};
+    // let data = {};
     const json = await response.json();
-    const { description } = json;
-    data.currentTemperature = json.currentConditions.temp;
-    data.iconName = json.currentConditions.icon;
-    data.description = description;
+    // const { description } = json;
+    // data.currentTemperature = json.currentConditions.temp;
+    // data.iconName = json.currentConditions.icon;
+    // data.description = description;
+    const forecast = json.days.slice(0, 5).map((day) => ({
+      date: day.datetime,
+      temperature: day.temp,
+      icon: day.icon,
+      description: day.conditions,
+    }));
 
-    return data;
+    return forecast;
   } catch (error) {
     console.error(error.message);
   }
 }
 
-export async function IconSearch(icon) {
-  const url = `https://api.giphy.com/v1/gifs/translate?api_key=${GIPHY}&s=${icon}`;
+export async function BackgroundSearch(bg) {
+  const url = `https://api.giphy.com/v1/gifs/translate?api_key=${GIPHY}&s=${bg}`;
   try {
     const response = await fetch(url);
     if (!response.ok) {
@@ -31,7 +37,7 @@ export async function IconSearch(icon) {
     let data = {};
     const json = await response.json();
     data.imgURL = json.data.images["original"].url;
-
+    
     return data;
   } catch (error) {
     console.error(error.message);
