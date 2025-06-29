@@ -1,7 +1,14 @@
 const GIPHY = process.env.GIPHY_API_KEY;
 
+const currentUnitForm = document.getElementById('switch');
+currentUnitForm.addEventListener('submit', e => {
+	e.preventDefault();
+	const checkbox = e.target['unit'].checked;
+	console.log(checkbox);
+});
+
 export async function weatherSearch(location) {
-	const url = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}?key=${process.env.WEATHER_API_KEY}`;
+	const url = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}?key=${process.env.WEATHER_API_KEY}&unitGroup=uk`;
 	try {
 		const response = await fetch(url);
 		if (!response.ok) {

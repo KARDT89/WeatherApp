@@ -8,10 +8,18 @@
 	<body>
 		<header>
 			<p id="app-name">Forecast.JS</p>
-			<form id="weather-form">
-				<input type="text" placeholder="Enter Location" name="location" />
-				<button type="submit">Search</button>
-			</form>
+			<div class="right-nav">
+				<form id="weather-form">
+					<input type="text" placeholder="Enter Location" name="location" />
+					<button type="submit">Search</button>
+				</form>
+				<div id="switch">
+					<label class="switch">
+					<input type="checkbox" id="unit" name="unit">
+					<span class="slider round"></span>
+				</label>
+				</div>
+			</div>
 		</header>
 		<div id="content"></div>
 	</body>

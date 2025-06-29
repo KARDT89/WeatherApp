@@ -12,6 +12,8 @@ form.addEventListener('submit', async e => {
 	console.log(forecastArray);
 });
 
+let currentTempinCelcius = [];
+
 async function showWeather(forecastArray) {
 	const content = document.getElementById('content');
 	content.innerHTML = '';
@@ -42,7 +44,23 @@ async function showWeather(forecastArray) {
 		card.innerHTML = '';
 
 		const h1 = document.createElement('h1');
-		h1.textContent = `${day.temperature}°C`;
+		// document.getElementById("unit").checked = false
+		if (document.getElementById('unit').checked === false) {
+			h1.textContent = `${day.temperature}°C`;
+		} else {
+			let fahrenheit = (day.temperature * 9) / 5 + 32;
+			h1.textContent = `${fahrenheit}°F`;
+		}
+		document.getElementById('unit').addEventListener('change', function () {
+			if (!this.checked) {
+				h1.textContent = `${day.temperature}°C`;
+			} else {
+				let fahrenheit = (day.temperature * 9) / 5 + 32;
+				h1.textContent = `${fahrenheit}°F`;
+			}
+		});
+
+		currentTempinCelcius.push(day.temperature);
 
 		const description = document.createElement('p');
 		description.textContent = day.description;
@@ -83,6 +101,7 @@ async function showWeather(forecastArray) {
 	content.appendChild(gif);
 
 	renderCard(currentIndex);
+	console.log(currentTempinCelcius);
 }
 
 // async function showWeather(forecastArray) {
