@@ -44,7 +44,8 @@ async function showWeather(forecastArray) {
 		card.innerHTML = '';
 
 		const h1 = document.createElement('h1');
-		// document.getElementById("unit").checked = false
+		
+		// logic to handle c to f
 		if (document.getElementById('unit').checked === false) {
 			h1.textContent = `${day.temperature}°C`;
 		} else {
@@ -59,8 +60,6 @@ async function showWeather(forecastArray) {
 				h1.textContent = `${fahrenheit}°F`;
 			}
 		});
-
-		currentTempinCelcius.push(day.temperature);
 
 		const description = document.createElement('p');
 		description.textContent = day.description;
