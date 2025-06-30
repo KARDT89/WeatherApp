@@ -1,6 +1,7 @@
 import './styles.css';
 import './uiController.js';
 import './switch.css';
+// import odinlined from "../src/public/odi"
 
 document.addEventListener('DOMContentLoaded', () => {
 	const content = document.getElementById('content');
