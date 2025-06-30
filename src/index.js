@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	welcome.id = 'welcome';
 	welcome.innerHTML = `<div class="theodinproject">
 							<p>The Odin Project</p>
-							<img id="TOP" src="./odin-lined.png" alt="TOP" /> <p>Weather App</p>
+							<img id="TOP" src="https://cdn.statically.io/gh/TheOdinProject/curriculum/5f37d43908ef92499e95a9b90fc3cc291a95014c/html_css/project-sign-up-form/odin-lined.png" alt="TOP" /> <p>Weather App</p>
 						</div>
 `;
 

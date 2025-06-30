@@ -89,7 +89,7 @@ async function showWeather(arr) {
 		date.id = 'date';
 
 		const icon = document.createElement('img');
-		icon.src = `/icons/${day.icon}.svg`;
+		icon.src = `https://raw.githubusercontent.com/visualcrossing/WeatherIcons/main/PNG/2nd%20Set%20-%20Color/${day.icon}.png`;
 		icon.classList.add('weather-icon');
 
 		const tempAndImage = document.createElement('div');
