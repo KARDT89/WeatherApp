@@ -1,5 +1,8 @@
 const GIPHY = process.env.GIPHY_API_KEY;
 
+const giphyapi = "XTmlPQGVt2gLHZ6E98mAtOZrORU90rNF"
+const weatherapi = "CXQXNL67TVZFX9CQYHTREL5LG"
+
 const currentUnitForm = document.getElementById('switch');
 currentUnitForm.addEventListener('submit', e => {
 	e.preventDefault();
@@ -8,7 +11,7 @@ currentUnitForm.addEventListener('submit', e => {
 });
 
 export async function weatherSearch(location) {
-	const url = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}?key=${process.env.WEATHER_API_KEY}&unitGroup=uk`;
+	const url = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}?key=${weatherapi}&unitGroup=uk`;
 	try {
 		const response = await fetch(url);
 		if (!response.ok) {
@@ -42,7 +45,7 @@ export async function weatherSearch(location) {
 }
 
 export async function BackgroundSearch(bg) {
-	const url = `https://api.giphy.com/v1/gifs/translate?api_key=${GIPHY}&s=${bg}`;
+	const url = `https://api.giphy.com/v1/gifs/translate?api_key=${giphyapi}&s=${bg}`;
 	try {
 		const response = await fetch(url);
 		if (!response.ok) {

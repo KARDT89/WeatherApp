@@ -7,14 +7,24 @@ form.addEventListener('submit', async e => {
 	e.preventDefault();
 	const location = e.target['location'].value;
 	const forecastArray = await weatherSearch(location);
-	//   const iconData = await IconSearch(weatherData.iconName);
 	console.log(forecastArray);
 	
-	showWeather(forecastArray);
-	console.log(forecastArray);
+	if(forecastArray === undefined){
+		badSearch()
+	} else {
+		showWeather(forecastArray);
+	}
+	
 });
 
-let currentTempinCelcius = [];
+function badSearch(){
+	const content = document.getElementById('content');
+	content.innerHTML = ""
+	const h1 = document.createElement("h1")
+	h1.innerHTML = "Sorry, this city doesn't exist"
+	content.append(h1)
+}
+
 
 async function showWeather(arr) {
 	const content = document.getElementById('content');
@@ -102,7 +112,7 @@ async function showWeather(arr) {
 		windspeed.innerText = `Wind: ${day.windspeed}km/h`
 		
 		const precipitation = document.createElement("p")
-		precipitation.innerText = `precipitation: ${day.precipitation}%`
+		precipitation.innerText = `Precipitation: ${day.precipitation}%`
 
 		const topData = document.createElement("div")
 		topData.id = "top-data"
@@ -137,7 +147,7 @@ async function showWeather(arr) {
 	content.appendChild(gif);
 
 	renderCard(currentIndex);
-	console.log(currentTempinCelcius);
+	// console.log(currentTempinCelcius);
 }
 
 // async function showWeather(forecastArray) {
