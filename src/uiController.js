@@ -8,28 +8,26 @@ form.addEventListener('submit', async e => {
 	const location = e.target['location'].value;
 	const forecastArray = await weatherSearch(location);
 	console.log(forecastArray);
-	
-	if(forecastArray === undefined){
-		badSearch()
+
+	if (forecastArray === undefined) {
+		badSearch();
 	} else {
 		showWeather(forecastArray);
 	}
-	
 });
 
-function badSearch(){
+function badSearch() {
 	const content = document.getElementById('content');
-	content.innerHTML = ""
-	const h1 = document.createElement("h1")
-	h1.innerHTML = "Sorry, this city doesn't exist"
-	content.append(h1)
+	content.innerHTML = '';
+	const h1 = document.createElement('h1');
+	h1.innerHTML = "Sorry, this city doesn't exist";
+	content.append(h1);
 }
-
 
 async function showWeather(arr) {
 	const content = document.getElementById('content');
 	content.innerHTML = '';
-	let [forecastArray, address] = arr
+	let [forecastArray, address] = arr;
 	const { imgURL } = await BackgroundSearch(forecastArray[0].icon);
 	const gif = document.createElement('img');
 	gif.src = imgURL;
@@ -57,33 +55,32 @@ async function showWeather(arr) {
 
 		const h1 = document.createElement('h1');
 		const feelsLike = document.createElement('p');
-		feelsLike.classList.add("feels-like")
-
+		feelsLike.classList.add('feels-like');
 
 		// logic to handle c to f
 		if (document.getElementById('unit').checked === false) {
 			h1.textContent = `${day.temperature}°C`;
-			feelsLike.textContent = `Feels Like: ${day.feelslike}°C`;
+			feelsLike.innerHTML = `Feels Like: ${day.feelslike}°C`;
 		} else {
 			let fahrenheit = (day.temperature * 9) / 5 + 32;
 			let fahrenheitFeelsLike = (day.feelslike * 9) / 5 + 32;
 			h1.textContent = `${fahrenheit.toFixed(2)}°F`;
-			feelsLike.textContent = `Feels Like: ${fahrenheitFeelsLike.toFixed(2)}°F`;
+			feelsLike.innerHTML = `Feels Like: ${fahrenheitFeelsLike.toFixed(2)}°F`;
 		}
 		document.getElementById('unit').addEventListener('change', function () {
 			if (!this.checked) {
 				h1.textContent = `${day.temperature}°C`;
-				feelsLike.textContent = `Feels Like: ${day.feelslike}°C`;
+				feelsLike.innerHTML = `Feels Like: ${day.feelslike}°C`;
 			} else {
 				let fahrenheit = (day.temperature * 9) / 5 + 32;
 				let fahrenheitFeelsLike = (day.feelslike * 9) / 5 + 32;
 				h1.textContent = `${fahrenheit.toFixed(2)}°F`;
-				feelsLike.textContent = `Feels Like: ${fahrenheitFeelsLike.toFixed(2)}°F`;
+				feelsLike.innerHTML = `Feels Like: ${fahrenheitFeelsLike.toFixed(2)}°F`;
 			}
 		});
 
 		const place = document.createElement('p');
-		place.id = "address"
+		place.id = 'address';
 		place.textContent = address;
 
 		const date = document.createElement('p');
@@ -103,23 +100,22 @@ async function showWeather(arr) {
 
 		tempAndImage.appendChild(icon);
 		tempAndImage.appendChild(h1);
-		
 
-		const humidity = document.createElement("p")
-		humidity.innerText = `Humidity: ${day.humidity}%`
-		
-		const windspeed = document.createElement("p")
-		windspeed.innerText = `Wind: ${day.windspeed}km/h`
-		
-		const precipitation = document.createElement("p")
-		precipitation.innerText = `Precipitation: ${day.precipitation}%`
+		const humidity = document.createElement('p');
+		humidity.innerHTML = `Humidity: ${day.humidity}%`;
 
-		const topData = document.createElement("div")
-		topData.id = "top-data"
+		const windspeed = document.createElement('p');
+		windspeed.innerHTML = `Wind: ${day.windspeed}km/h`;
 
-		otherData.append(feelsLike, humidity, precipitation, windspeed)
+		const precipitation = document.createElement('p');
+		precipitation.innerHTML = `Precipitation: ${day.precipitation}%`;
 
-		topData.append(tempAndImage, otherData)
+		const topData = document.createElement('div');
+		topData.id = 'top-data';
+
+		otherData.append(feelsLike, humidity, precipitation, windspeed);
+
+		topData.append(tempAndImage, otherData);
 
 		card.append(topData, place, date);
 	}
@@ -135,11 +131,11 @@ async function showWeather(arr) {
 		renderCard(currentIndex);
 	});
 
-	const footer = document.createElement("div")
+	const footer = document.createElement('div');
 	footer.innerHTML = `<p class="footer2">
 							Made with ❤️ by
 							<a href="https://github.com/KARDT89" target="_blank" id="dt89">DT89</a>
-						</p>`
+						</p>`;
 
 	cardContainer.append(prevBtn, card, nextBtn);
 	content.appendChild(cardContainer);
@@ -147,41 +143,4 @@ async function showWeather(arr) {
 	content.appendChild(gif);
 
 	renderCard(currentIndex);
-	// console.log(currentTempinCelcius);
 }
-
-// async function showWeather(forecastArray) {
-// //   const { currentTemperature, iconName, description } = weatherData;
-//   const backgroundImageURL = await BackgroundSearch(forecastArray[0].icon)
-// //   const { imgURL } = iconData;
-//   const h1 = document.createElement("h1");
-//   const h2 = document.createElement("h2");
-//   const content = document.getElementById("content");
-//   const tempAndImage = document.createElement("div");
-//   const img = document.createElement("img");
-//   const card = document.createElement("div");
-//   const weatherIcon = document.createElement("img");
-
-//   h1.classList.add('current-temperature')
-//   h2.classList.add('weather-description')
-//   tempAndImage.classList.add("temp-and-image")
-//   img.classList.add('weather-gif')
-//   weatherIcon.classList.add('weather-icon')
-//   card.classList.add('card')
-
-//   content.innerHTML = "";
-
-//   h1.innerHTML = `${currentTemperature}`;
-//   h2.innerHTML = `${description}`;
-//   img.src = backgroundImageURL;
-// //   body.style.backgroundImage = `url(${imgURL})`
-//   weatherIcon.src = `/icons/${iconName}.svg`;
-
-//   tempAndImage.appendChild(h1)
-//   tempAndImage.appendChild(weatherIcon)
-//   card.appendChild(tempAndImage);
-//   card.appendChild(h2);
-
-//   content.appendChild(card)
-//   content.appendChild(img);
-// }

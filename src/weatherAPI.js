@@ -1,7 +1,7 @@
 const GIPHY = process.env.GIPHY_API_KEY;
 
-const giphyapi = "XTmlPQGVt2gLHZ6E98mAtOZrORU90rNF"
-const weatherapi = "CXQXNL67TVZFX9CQYHTREL5LG"
+const giphyapi = 'XTmlPQGVt2gLHZ6E98mAtOZrORU90rNF';
+const weatherapi = 'CXQXNL67TVZFX9CQYHTREL5LG';
 
 const currentUnitForm = document.getElementById('switch');
 currentUnitForm.addEventListener('submit', e => {
@@ -34,10 +34,9 @@ export async function weatherSearch(location) {
 			humidity: day.humidity,
 			feelslike: day.feelslike,
 			windspeed: day.windspeed,
-			precipitation: day.precipcover
+			precipitation: day.precipcover,
 		}));
-		
-		
+
 		return [forecast, json.resolvedAddress];
 	} catch (error) {
 		console.error(error.message);

@@ -15,6 +15,7 @@ body {
 	background-color: var(--background);
 	color: white;
 	height: 100vh;
+	width: auto;
 	position: relative;
 	overflow: hidden;
 }
@@ -120,7 +121,7 @@ header {
 	/* align-items: center; */
 	text-align: center;
 	background-color: var(--background);
-	border: 2px solid rgb(255, 255, 255);
+	/* border: 2px solid rgb(255, 255, 255); */
 	opacity: 85%;
 	height: 40vh;
 	width: 25vw;
@@ -135,8 +136,7 @@ header {
 	align-items: center;
 }
 
-
-#top-data{
+#top-data {
 	display: flex;
 	gap: 1rem;
 	justify-content: space-around;
@@ -148,22 +148,21 @@ header {
 	justify-content: center;
 	align-items: center;
 	font-size: 2rem;
-	gap:1rem;
-	
+	gap: 1rem;
 }
 
-.other-data{
+.other-data {
 	display: flex;
 	flex-direction: column;
 	align-items: start;
 	gap: 0.2rem;
 }
 
-#address{
-  font-size: 2rem;
+#address {
+	font-size: 2rem;
 }
 
-.other-data > p{
+.other-data > p {
 	font-size: 0.8rem;
 	margin: 0;
 }
@@ -202,7 +201,7 @@ header {
 	border-radius: 5px;
 }
 
-.right-nav{
+.right-nav {
 	display: flex;
 	gap: 0.5rem;
 }
