@@ -26,6 +26,8 @@
   transition: .4s;
 }
 
+
+
 .slider:before {
   position: absolute;
   height: 26px;

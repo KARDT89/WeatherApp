@@ -21,14 +21,21 @@ export async function weatherSearch(location) {
 		// data.currentTemperature = json.currentConditions.temp;
 		// data.iconName = json.currentConditions.icon;
 		// data.description = description;
+
 		const forecast = json.days.slice(0, 8).map(day => ({
 			date: day.datetime,
 			temperature: day.temp,
 			icon: day.icon,
-			description: day.conditions,
+			condition: day.conditions,
+			description: day.description,
+			humidity: day.humidity,
+			feelslike: day.feelslike,
+			windspeed: day.windspeed,
+			precipitation: day.precipcover
 		}));
-
-		return forecast;
+		
+		
+		return [forecast, json.resolvedAddress];
 	} catch (error) {
 		console.error(error.message);
 	}

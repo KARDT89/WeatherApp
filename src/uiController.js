@@ -8,16 +8,18 @@ form.addEventListener('submit', async e => {
 	const location = e.target['location'].value;
 	const forecastArray = await weatherSearch(location);
 	//   const iconData = await IconSearch(weatherData.iconName);
+	console.log(forecastArray);
+	
 	showWeather(forecastArray);
 	console.log(forecastArray);
 });
 
 let currentTempinCelcius = [];
 
-async function showWeather(forecastArray) {
+async function showWeather(arr) {
 	const content = document.getElementById('content');
 	content.innerHTML = '';
-
+	let [forecastArray, address] = arr
 	const { imgURL } = await BackgroundSearch(forecastArray[0].icon);
 	const gif = document.createElement('img');
 	gif.src = imgURL;
@@ -44,28 +46,39 @@ async function showWeather(forecastArray) {
 		card.innerHTML = '';
 
 		const h1 = document.createElement('h1');
-		
+		const feelsLike = document.createElement('p');
+		feelsLike.classList.add("feels-like")
+
+
 		// logic to handle c to f
 		if (document.getElementById('unit').checked === false) {
 			h1.textContent = `${day.temperature}°C`;
+			feelsLike.textContent = `Feels Like: ${day.feelslike}°C`;
 		} else {
 			let fahrenheit = (day.temperature * 9) / 5 + 32;
-			h1.textContent = `${fahrenheit}°F`;
+			let fahrenheitFeelsLike = (day.feelslike * 9) / 5 + 32;
+			h1.textContent = `${fahrenheit.toFixed(2)}°F`;
+			feelsLike.textContent = `Feels Like: ${fahrenheitFeelsLike.toFixed(2)}°F`;
 		}
 		document.getElementById('unit').addEventListener('change', function () {
 			if (!this.checked) {
 				h1.textContent = `${day.temperature}°C`;
+				feelsLike.textContent = `Feels Like: ${day.feelslike}°C`;
 			} else {
 				let fahrenheit = (day.temperature * 9) / 5 + 32;
-				h1.textContent = `${fahrenheit}°F`;
+				let fahrenheitFeelsLike = (day.feelslike * 9) / 5 + 32;
+				h1.textContent = `${fahrenheit.toFixed(2)}°F`;
+				feelsLike.textContent = `Feels Like: ${fahrenheitFeelsLike.toFixed(2)}°F`;
 			}
 		});
 
-		const description = document.createElement('p');
-		description.textContent = day.description;
+		const place = document.createElement('p');
+		place.id = "address"
+		place.textContent = address;
 
 		const date = document.createElement('p');
-		date.textContent = formatDateToLong(day.date);
+		date.innerHTML = `<h3>${day.condition}</h3> Prediction: ${day.description}<br/><br/>
+		${formatDateToLong(day.date)}`;
 		date.id = 'date';
 
 		const icon = document.createElement('img');
@@ -76,12 +89,29 @@ async function showWeather(forecastArray) {
 		tempAndImage.classList.add('temp-and-image');
 
 		const otherData = document.createElement('div');
-		tempAndImage.classList.add('other-data');
+		otherData.classList.add('other-data');
 
-		tempAndImage.appendChild(h1);
 		tempAndImage.appendChild(icon);
+		tempAndImage.appendChild(h1);
+		
 
-		card.append(tempAndImage, description, otherData, date);
+		const humidity = document.createElement("p")
+		humidity.innerText = `Humidity: ${day.humidity}%`
+		
+		const windspeed = document.createElement("p")
+		windspeed.innerText = `Wind: ${day.windspeed}km/h`
+		
+		const precipitation = document.createElement("p")
+		precipitation.innerText = `precipitation: ${day.precipitation}%`
+
+		const topData = document.createElement("div")
+		topData.id = "top-data"
+
+		otherData.append(feelsLike, humidity, precipitation, windspeed)
+
+		topData.append(tempAndImage, otherData)
+
+		card.append(topData, place, date);
 	}
 
 	prevBtn.addEventListener('click', () => {
@@ -95,8 +125,15 @@ async function showWeather(forecastArray) {
 		renderCard(currentIndex);
 	});
 
+	const footer = document.createElement("div")
+	footer.innerHTML = `<p class="footer2">
+							Made with ❤️ by
+							<a href="https://github.com/KARDT89" target="_blank" id="dt89">DT89</a>
+						</p>`
+
 	cardContainer.append(prevBtn, card, nextBtn);
 	content.appendChild(cardContainer);
+	content.appendChild(footer);
 	content.appendChild(gif);
 
 	renderCard(currentIndex);

@@ -31,7 +31,7 @@ body {
 }
 
 #TOP {
-	width: 50px;
+	width: 100px;
 }
 
 #dt89 {
@@ -44,7 +44,7 @@ body {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	font-size: 3rem;
+	font-size: 4rem;
 	gap: 1rem;
 }
 
@@ -116,12 +116,12 @@ header {
 .card {
 	display: flex;
 	flex-direction: column;
-	/* justify-content: center; */
+	justify-content: space-evenly;
 	/* align-items: center; */
 	text-align: center;
 	background-color: var(--background);
 	border: 2px solid rgb(255, 255, 255);
-	height: 25vh;
+	height: 40vh;
 	width: 25vw;
 	border-radius: 10px;
 	box-shadow: 0px 0px 100px 7px rgba(255, 255, 255, 0.8);
@@ -135,10 +135,40 @@ header {
 }
 
 
+#top-data{
+	display: flex;
+	gap: 1rem;
+	justify-content: space-between;
+	align-items: center;
+}
+
 .temp-and-image {
 	display: flex;
-	justify-content: space-around;
+	justify-content: center;
+	align-items: center;
 	font-size: 2rem;
+	gap:1rem;
+	
+}
+
+.other-data{
+	display: flex;
+	flex-direction: column;
+	align-items: start;
+	gap: 0.2rem;
+}
+
+#address{
+  font-size: 1.5rem;
+}
+
+.other-data > p{
+	font-size: 0.8rem;
+	margin: 0;
+}
+
+.temp-and-image > h1 {
+	margin: 0;
 }
 
 .date-and-description {
@@ -149,8 +179,16 @@ header {
 	align-items: center;
 }
 
+#date {
+	display: flex;
+	align-items: center;
+	margin: 0;
+	justify-content: center;
+	gap: 3rem;
+}
+
 .weather-icon {
-	width: 10rem;
+	width: 5rem;
 }
 
 .controlBtn {
