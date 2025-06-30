@@ -45,9 +45,17 @@ async function showWeather(arr) {
 	prevBtn.textContent = '⟨';
 	prevBtn.classList.add('prevBtn', 'controlBtn');
 
+	const prevBtn2 = document.createElement('button');
+	prevBtn2.textContent = 'Previous';
+	prevBtn2.classList.add('prevBtn2');
+
 	const nextBtn = document.createElement('button');
 	nextBtn.textContent = '⟩';
 	nextBtn.classList.add('nextBtn', 'controlBtn');
+
+	const nextBtn2 = document.createElement('button');
+	nextBtn2.textContent = 'Next';
+	nextBtn2.classList.add('nextBtn2');
 
 	function renderCard(currentIndex) {
 		const day = forecastArray[currentIndex];
@@ -125,8 +133,17 @@ async function showWeather(arr) {
 			(currentIndex - 1 + forecastArray.length) % forecastArray.length;
 		renderCard(currentIndex);
 	});
+	prevBtn2.addEventListener('click', () => {
+		currentIndex =
+			(currentIndex - 1 + forecastArray.length) % forecastArray.length;
+		renderCard(currentIndex);
+	});
 
 	nextBtn.addEventListener('click', () => {
+		currentIndex = (currentIndex + 1) % forecastArray.length;
+		renderCard(currentIndex);
+	});
+	nextBtn2.addEventListener('click', () => {
 		currentIndex = (currentIndex + 1) % forecastArray.length;
 		renderCard(currentIndex);
 	});
@@ -136,8 +153,10 @@ async function showWeather(arr) {
 							Made with ❤️ by
 							<a href="https://github.com/KARDT89" target="_blank" id="dt89">DT89</a>
 						</p>`;
-
-	cardContainer.append(prevBtn, card, nextBtn);
+	const secondControlBtn = document.createElement("div")
+	secondControlBtn.classList.add("secondControlBtn")
+	secondControlBtn.append(prevBtn2, nextBtn2)
+	cardContainer.append(prevBtn, card, nextBtn, secondControlBtn);
 	content.appendChild(cardContainer);
 	content.appendChild(footer);
 	content.appendChild(gif);
