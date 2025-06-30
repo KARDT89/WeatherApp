@@ -153,9 +153,9 @@ async function showWeather(arr) {
 							Made with ❤️ by
 							<a href="https://github.com/KARDT89" target="_blank" id="dt89">DT89</a>
 						</p>`;
-	const secondControlBtn = document.createElement("div")
-	secondControlBtn.classList.add("secondControlBtn")
-	secondControlBtn.append(prevBtn2, nextBtn2)
+	const secondControlBtn = document.createElement('div');
+	secondControlBtn.classList.add('secondControlBtn');
+	secondControlBtn.append(prevBtn2, nextBtn2);
 	cardContainer.append(prevBtn, card, nextBtn, secondControlBtn);
 	content.appendChild(cardContainer);
 	content.appendChild(footer);
